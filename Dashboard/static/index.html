@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StockBoard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>StockBoard</h1>
+    <span id="market" class="pill">—</span>
+  </div>
+  <div class="search">
+    <input id="search" type="text" placeholder="Add a stock — type a ticker or company name" autocomplete="off" spellcheck="false">
+    <ul id="results" class="results" hidden></ul>
+  </div>
+  <div class="controls">
+    <label>Sort
+      <select id="sort">
+        <option value="custom">My order</option>
+        <option value="gain">Top gainers</option>
+        <option value="loss">Top losers</option>
+        <option value="alpha">A → Z</option>
+      </select>
+    </label>
+    <label>Refresh
+      <select id="interval">
+        <option value="5">5s</option>
+        <option value="15" selected>15s</option>
+        <option value="30">30s</option>
+        <option value="60">1m</option>
+        <option value="0">Paused</option>
+      </select>
+    </label>
+    <span id="updated" class="muted">Loading…</span>
+  </div>
+</header>
+
+<section id="summary" class="summary"></section>
+
+<main>
+  <section id="grid" class="grid" aria-label="Watchlist"></section>
+  <p id="empty" class="empty" hidden>Your watchlist is empty. Search above to add a stock.</p>
+
+  <section id="detail" class="detail" hidden>
+    <div class="detail-head">
+      <div>
+        <div class="d-symbol" id="d-symbol"></div>
+        <div class="muted" id="d-name"></div>
+      </div>
+      <div class="d-price-wrap">
+        <div class="d-price" id="d-price"></div>
+        <div id="d-change"></div>
+      </div>
+    </div>
+    <div class="ranges" id="ranges">
+      <button data-range="1d" class="on">1D</button>
+      <button data-range="5d">5D</button>
+      <button data-range="1mo">1M</button>
+      <button data-range="6mo">6M</button>
+      <button data-range="1y">1Y</button>
+      <button data-range="5y">5Y</button>
+    </div>
+    <div class="chart-wrap" id="chart-wrap">
+      <svg id="chart" role="img" aria-label="Price chart"></svg>
+      <div id="tip" class="tip" hidden></div>
+    </div>
+    <dl class="stats" id="d-stats"></dl>
+  </section>
+</main>
+
+<footer class="muted">Data from Yahoo Finance, may be delayed up to 15 minutes. Not investment advice.</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
